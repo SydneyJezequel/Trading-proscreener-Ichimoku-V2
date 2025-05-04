@@ -1,0 +1,37 @@
+/******************* Unité de temps *******************/
+TIMEFRAME (daily)
+
+
+/******************* Indicateurs *******************/
+/*
+Tenkan = (highest[9] + lowest[9])/2
+Kijun = (highest[26] + lowest[26])/2
+SpanA = (Tenkan + Kijun)/2
+SpanB = (highest[52] + lowest[52])/2
+*/
+Tenkan = (highest[9](high) + lowest[9](low))/2
+Kijun = (highest[26](high) + lowest[26](low))/2
+SpanA = (Tenkan+Kijun)/2
+SpanB = (highest[52](high)+lowest[52](low))/2
+ChikouSpan = close
+
+
+/******************* Conditions daily *******************/
+// nuage future haussier :
+C1 = SpanA > SpanB
+// prix > nuage :
+C2 = close > SpanA[26] and close > SpanB[26]
+// Kijun > nuage :
+C3 = Kijun > SpanA[26] and Kijun > SpanB[26]
+// Kijun > Tenkan :
+//  C4 = Kijun > Tenkan
+// OU :
+C4 = close > Tenkan
+// Breakout Kijun :
+C5 = close crosses over Kijun or close = Kijun
+// Chikou span libérée :
+C6 = ChikouSpan > close[26] and ChikouSpan > DHigh(26) and ChikouSpan > SpanA[26] and ChikouSpan > SpanB[26] and ChikouSpan > Tenkan[26] and ChikouSpan > Kijun[26] and ChikouSpan > close[25] and ChikouSpan > DHigh(25) and ChikouSpan > close[24] and ChikouSpan > DHigh(24)
+
+
+/******************* Conditions d’affichage *******************/
+Screener[C1 and C2 and C3 and C4 and C5 and C6]
