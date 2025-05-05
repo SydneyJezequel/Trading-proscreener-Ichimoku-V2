@@ -27,18 +27,19 @@ C1 = SpanA > SpanB
 C2 = close > SpanA[26] and close > SpanB[26]
 // Kijun > nuage :
 C3 = Kijun > SpanA[26] and Kijun > SpanB[26]
-// Kijun > Tenkan : 
-/* C4 = Kijun > Tenkan */
-C4 = close > Tenkan
+// Kijun > Tenkan :
+C4 = Kijun > Tenkan
+// Prix > Tenkan :
+C5 = close > Tenkan
 // Prix croise la Kijun :
-C5 = close crosses over Kijun[0]
+C6 = close crosses over Kijun[0]
 // Prix supérieur à la Kijun et à proximité :
-C6 = (close >= Kijun[0] and close <= Kijun[0]*kijunSpread)
+C7 = (close >= Kijun[0] and close <= Kijun[0]*kijunSpread)
 // Chikou span libérée :
-C7 = ChikouSpan > close[26] and ChikouSpan > DHigh(26) and ChikouSpan > SpanA[26] and ChikouSpan > SpanB[26] and ChikouSpan > Tenkan[26] and ChikouSpan > Kijun[26] and ChikouSpan > close[25] and ChikouSpan > DHigh(25) and ChikouSpan > close[24] and ChikouSpan > DHigh(24)
+C8 = ChikouSpan > close[26] and ChikouSpan > DHigh(26) and ChikouSpan > SpanA[26] and ChikouSpan > SpanB[26] and ChikouSpan > Tenkan[26] and ChikouSpan > Kijun[26] and ChikouSpan > close[25] and ChikouSpan > DHigh(25) and ChikouSpan > close[24] and ChikouSpan > DHigh(24)
 
 
 
 
 /******************* Conditions d’affichage *******************/
-Screener[C1 and C2 and C3 and C4 and (C5 or C6) and C7]
+Screener[C1 and C2 and C3 and C4 and C5 and (C6 or C7) and C8]
